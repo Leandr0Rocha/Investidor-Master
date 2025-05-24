@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Arsenal+SC&family=Quattrocento+Sans:wght@400;700&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Quattrocento Sans', Arial, sans-serif;
+  background: #1a1207;
+  color: #fff;
+}
+
+h1, h2, h3, .font-title {
+  font-family: 'Arsenal SC', Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+input, button {
+  font-family: inherit;
+}
+
+::-webkit-input-placeholder { color: #ffe9b3; }
+::-moz-placeholder { color: #ffe9b3; }
+:-ms-input-placeholder { color: #ffe9b3; }
+::placeholder { color: #ffe9b3; }
+
+/* Responsividade extra */
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+} 

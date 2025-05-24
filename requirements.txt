@@ -1,0 +1,19 @@
+# Backend
+express
+cors
+sqlite3
+
+# Frontend
+react
+react-dom
+react-scripts
+axios
+tailwindcss
+postcss
+autoprefixer
+
+# Comandos de instalação sugeridos:
+# Backend:
+# cd backend && npm install
+# Frontend:
+# cd frontend && npm install && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p 
