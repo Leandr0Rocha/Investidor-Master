@@ -1,4 +1,11 @@
 # Landing Page - Mentoria de Investimentos
+![image](https://github.com/user-attachments/assets/37b4f771-3d27-44bd-adaa-0f02d6734e95)
+
+Protótipo feito no Figma: https://www.figma.com/proto/kc41aH6iPx7sdpWppYCiIU/Landing-page?node-id=1-2&t=wFcq7HS90OkWEG0F-1
+
+## Aviso de Fictício e Imagens Geradas por IA
+
+Este projeto contém personagens, empresas e/ou cenários totalmente fictícios, criados apenas para fins de demonstração, estudo ou ilustração. As imagens presentes neste repositório foram geradas por Inteligência Artificial e não representam pessoas, marcas ou locais reais.
 
 ## 🎯 Propósito
 
@@ -12,7 +19,7 @@ Esta landing page foi desenvolvida para o investidor Carlos Goodman, que oferece
 
 ## 🎨 Inspiração e Créditos
 
-A ideia de criar uma landing page focada na captura de leads para um evento online foi inspirada no tutorial do canal [Programação Web](https://www.youtube.com/watch?v=KjVhcnSADGA&t=223s). O conceito de utilizar um formulário simples e eficiente para coletar informações de potenciais participantes, combinado com uma apresentação clara do valor oferecido, serviu como base para o desenvolvimento deste projeto. Adaptamos a abordagem para o contexto específico de uma mentoria de investimentos, mantendo o foco na conversão de visitantes em participantes.
+A ideia de criar uma landing page focada na captura de leads para um evento online foi inspirada no tutorial do canal [Programação Web](https://www.youtube.com/watch?v=KjVhcnSADGA&t=223s). O conceito de utilizar um formulário simples e eficiente para coletar informações de potenciais participantes serviu como base para o desenvolvimento deste projeto. Adaptei a abordagem para o contexto específico de uma mentoria de investimentos, mantendo o foco na conversão de visitantes em participantes.
 
 ## 🛠️ Tecnologias Utilizadas
 
