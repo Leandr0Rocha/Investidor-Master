@@ -17,7 +17,7 @@ const SaibaMais = () => (
         </h2>
       </div>
     </div>
-    <div className="flex flex-col md:flex-row justify-center gap-8 max-w-5xl mx-auto px-4">
+    <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row justify-center gap-6 sm:gap-8 max-w-5xl mx-auto px-2 sm:px-4">
       {aulas.map((aula, idx) => (
         <AulaCard key={idx} {...aula} />
       ))}
