@@ -1,6 +1,7 @@
 # Landing Page - Mentoria de Investimentos
 ![image](https://github.com/user-attachments/assets/37b4f771-3d27-44bd-adaa-0f02d6734e95)
 
+Protótipo feito no Figma: https://www.figma.com/proto/kc41aH6iPx7sdpWppYCiIU/Landing-page?node-id=1-2&t=wFcq7HS90OkWEG0F-1
 
 ## Aviso de Fictício e Imagens Geradas por IA
 
