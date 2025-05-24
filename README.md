@@ -1,4 +1,10 @@
 # Landing Page - Mentoria de Investimentos
+![image](https://github.com/user-attachments/assets/37b4f771-3d27-44bd-adaa-0f02d6734e95)
+
+
+## Aviso de Fictício e Imagens Geradas por IA
+
+Este projeto contém personagens, empresas e/ou cenários totalmente fictícios, criados apenas para fins de demonstração, estudo ou ilustração. As imagens presentes neste repositório foram geradas por Inteligência Artificial e não representam pessoas, marcas ou locais reais.
 
 ## 🎯 Propósito
 
