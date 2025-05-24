@@ -19,7 +19,7 @@ Esta landing page foi desenvolvida para o investidor Carlos Goodman, que oferece
 
 ## 🎨 Inspiração e Créditos
 
-A ideia de criar uma landing page focada na captura de leads para um evento online foi inspirada no tutorial do canal [Programação Web](https://www.youtube.com/watch?v=KjVhcnSADGA&t=223s). O conceito de utilizar um formulário simples e eficiente para coletar informações de potenciais participantes, combinado com uma apresentação clara do valor oferecido, serviu como base para o desenvolvimento deste projeto. Adaptamos a abordagem para o contexto específico de uma mentoria de investimentos, mantendo o foco na conversão de visitantes em participantes.
+A ideia de criar uma landing page focada na captura de leads para um evento online foi inspirada no tutorial do canal [Programação Web](https://www.youtube.com/watch?v=KjVhcnSADGA&t=223s). O conceito de utilizar um formulário simples e eficiente para coletar informações de potenciais participantes serviu como base para o desenvolvimento deste projeto. Adaptei a abordagem para o contexto específico de uma mentoria de investimentos, mantendo o foco na conversão de visitantes em participantes.
 
 ## 🛠️ Tecnologias Utilizadas
 
