@@ -103,13 +103,18 @@ const LeadForm = () => {
         telefone: { isValid: true, message: '' }
       });
     } catch (err) {
-      console.error('Erro ao enviar formulário:', err);
-      setErro('Erro ao enviar dados. Tente novamente.');
+      if (err.response && err.response.status === 409) {
+        setErro('Este e-mail já está cadastrado.');
+      } else if (err.response && err.response.data && err.response.data.error) {
+        setErro(err.response.data.error);
+      } else {
+        setErro('Erro ao enviar dados. Tente novamente.');
+      }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} method="POST" className="flex flex-col gap-2 w-full max-w-md mx-auto mt-2">
+    <form onSubmit={handleSubmit} method="POST" className="flex flex-col gap-1 w-full max-w-md mx-auto mt-2">
       <div className="relative mb-3">
       <input
         type="text"

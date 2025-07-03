@@ -33,7 +33,6 @@ A ideia de criar uma landing page focada na captura de leads para um evento onli
 - **Node.js**: Runtime JavaScript
 - **Express**: Framework web para Node.js
 - **SQLite**: Banco de dados para armazenamento de leads
-- **Jest**: Framework de testes unitários
 - **Nodemon**: Monitoramento de alterações em desenvolvimento
 
 ## 📁 Estrutura do Projeto
@@ -70,51 +69,44 @@ landing-page/
 1. Clone o repositório:
 ```bash
 git clone [URL_DO_REPOSITÓRIO]
-cd landing-page
+cd Investidor-Master
 ```
 
-2. Instale as dependências do backend:
+2. Instale todas as dependências (backend e frontend) com um único comando:
 ```bash
-cd backend
-npm install
-```
-
-3. Instale as dependências do frontend:
-```bash
-cd ../frontend
 npm install
 ```
 
 ### Executando o Projeto
 
-1. Inicie o backend:
+**Para desenvolvimento (com hot-reload):**
 ```bash
-cd backend
 npm run dev
 ```
 
-2. Em outro terminal, inicie o frontend:
+**Para produção:**
 ```bash
-cd frontend
 npm start
 ```
 
-3. Para executar os testes:
+**Para build do frontend:**
 ```bash
-cd backend
-npm test
+npm run build
 ```
 
 ## 🔧 Scripts Disponíveis
 
-### Backend
-- `npm run dev`: Inicia o servidor em modo desenvolvimento
-- `npm test`: Executa os testes unitários
-- `npm run build`: Compila o projeto para produção
+### Comandos Unificados (raiz do projeto)
+- `npm install`: Instala todas as dependências do backend e frontend
+- `npm run dev`: Inicia backend e frontend em modo desenvolvimento
+- `npm start`: Inicia backend e frontend em modo produção
+- `npm run build`: Compila o frontend para produção
 
-### Frontend
-- `npm start`: Inicia o servidor de desenvolvimento
-- `npm run build`: Compila o projeto para produção
+### Comandos Individuais
+- `npm run dev:backend`: Inicia apenas o backend em desenvolvimento
+- `npm run dev:frontend`: Inicia apenas o frontend em desenvolvimento
+- `npm run start:backend`: Inicia apenas o backend em produção
+- `npm run start:frontend`: Inicia apenas o frontend em produção
 
 ## 📝 Funcionalidades
 

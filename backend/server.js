@@ -73,19 +73,31 @@ app.post('/api/leads', (req, res) => {
     logger.warn('Tentativa de cadastro com campos inválidos', { body: req.body });
     return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
   }
-  
-  db.run(
-    'INSERT INTO leads (nome, email, telefone) VALUES (?, ?, ?)',
-    [nome, email, telefone],
-    function (err) {
-      if (err) {
-        logger.error('Erro ao salvar lead:', err);
-        return res.status(500).json({ error: 'Erro ao salvar lead.' });
-      }
-      logger.info('Novo lead cadastrado', { id: this.lastID, email });
-      res.status(201).json({ id: this.lastID, nome, email, telefone });
+
+  // Verifica se o e-mail já está cadastrado
+  db.get('SELECT * FROM leads WHERE email = ?', [email], (err, row) => {
+    if (err) {
+      logger.error('Erro ao verificar e-mail duplicado:', err);
+      return res.status(500).json({ error: 'Erro ao verificar e-mail.' });
     }
-  );
+    if (row) {
+      logger.warn('Tentativa de cadastro com e-mail já existente', { email });
+      return res.status(409).json({ error: 'Este e-mail já está cadastrado.' });
+    }
+    // Se não existe, cadastra normalmente
+    db.run(
+      'INSERT INTO leads (nome, email, telefone) VALUES (?, ?, ?)',
+      [nome, email, telefone],
+      function (err) {
+        if (err) {
+          logger.error('Erro ao salvar lead:', err);
+          return res.status(500).json({ error: 'Erro ao salvar lead.' });
+        }
+        logger.info('Novo lead cadastrado', { id: this.lastID, email });
+        res.status(201).json({ id: this.lastID, nome, email, telefone });
+      }
+    );
+  });
 });
 
 // Rota protegida para exportar os leads em formato Excel
