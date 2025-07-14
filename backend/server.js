@@ -2,9 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-const XLSX = require('xlsx');
-const fs = require('fs');
 const helmet = require('helmet');
 const logger = require('./src/utils/logger');
 
@@ -21,22 +18,25 @@ if (!API_KEY) {
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:"],
-      connectSrc: ["'self'", "http://localhost:5000"]
+      defaultSrc: ['\'self\''],
+      scriptSrc: ['\'self\'', '\'unsafe-inline\''],
+      styleSrc: ['\'self\'', '\'unsafe-inline\''],
+      imgSrc: ['\'self\'', 'data:', 'https:'],
+      connectSrc: ['\'self\'', 'http://localhost:5000']
     }
   }
 }));
 
 // Configuração do CORS
 app.use(cors({
-  origin: ['http://localhost:3000'],
+  origin: 'http://localhost:3000',
   methods: ['GET', 'POST'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'x-api-key']
 }));
+
+// Handler global para preflight CORS
+app.options('*', cors());
 
 app.use(express.json());
 
@@ -51,14 +51,7 @@ const checkApiKey = (req, res, next) => {
 };
 
 // Banco de dados SQLite
-const dbPath = path.resolve(__dirname, process.env.NODE_ENV === 'test' ? 'test.db' : 'leads.db');
-const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
-  if (err) {
-    logger.error('Erro ao conectar ao banco de dados:', err);
-  } else {
-    logger.info('Conectado ao banco de dados SQLite.');
-  }
-});
+const db = new sqlite3.Database('./database.sqlite');
 
 db.run(`CREATE TABLE IF NOT EXISTS leads (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -100,35 +93,6 @@ app.post('/api/leads', (req, res) => {
   });
 });
 
-// Rota protegida para exportar os leads em formato Excel
-app.get('/api/admin/export-leads', checkApiKey, (req, res) => {
-  db.all('SELECT * FROM leads', [], (err, rows) => {
-    if (err) {
-      logger.error('Erro ao buscar leads:', err);
-      return res.status(500).json({ error: 'Erro ao buscar leads.' });
-    }
-
-    // Cria uma planilha a partir dos dados
-    const worksheet = XLSX.utils.json_to_sheet(rows);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Leads');
-
-    // Salva o arquivo temporariamente
-    const filePath = './leads.xlsx';
-    XLSX.writeFile(workbook, filePath);
-
-    // Envia o arquivo para download
-    res.download(filePath, 'leads.xlsx', (err) => {
-      if (err) {
-        logger.error('Erro ao enviar arquivo:', err);
-      }
-      // Remove o arquivo temporário após o download
-      fs.unlinkSync(filePath);
-      logger.info('Arquivo de leads exportado com sucesso');
-    });
-  });
-});
-
 // Rota de erro interno para testes
 if (process.env.NODE_ENV === 'test') {
   app.get('/api/erro-interno', (req, res, next) => {
@@ -137,11 +101,8 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 // Middleware de erro global - deve ser o último middleware
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   logger.error('Erro interno do servidor:', { error: err.message, stack: err.stack });
-  
-  // Força o tipo de conteúdo para JSON
-  res.setHeader('Content-Type', 'application/json');
   res.status(500).json({ error: 'Erro interno do servidor.' });
 });
 
@@ -152,4 +113,4 @@ if (process.env.NODE_ENV !== 'test') {
   });
 }
 
-module.exports = app; 
+module.exports = app;

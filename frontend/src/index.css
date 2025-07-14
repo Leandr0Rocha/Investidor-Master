@@ -12,8 +12,8 @@
 
 body {
   font-family: 'Quattrocento Sans', Arial, sans-serif;
-  background: #1a1207;
-  color: #fff;
+  background: #1a1a1a;
+  color: #fff1cc;
   min-width: 0;
 }
 
@@ -29,11 +29,6 @@ input, button {
 input, button, textarea {
   min-width: 0;
 }
-
-::-webkit-input-placeholder { color: #ffe9b3; }
-::-moz-placeholder { color: #ffe9b3; }
-:-ms-input-placeholder { color: #ffe9b3; }
-::placeholder { color: #ffe9b3; }
 
 img {
   max-width: 100%;

@@ -1,111 +1,66 @@
-import React, { useRef } from 'react';
+import React from "react";
+import BotaoParticipe from "./BotaoParticipe";
 
-const depoimentos = [
-  {
-    nome: 'Ana Souza',
-    texto: 'A mentoria do Carlos mudou minha visão sobre investimentos. Hoje me sinto muito mais segura para investir!',
-    foto: '/images/Apresentando.png',
-    profissao: 'Analista Financeira'
-  },
-  {
-    nome: 'João Pedro',
-    texto: 'Conteúdo prático, direto ao ponto e com dicas que realmente funcionam. Recomendo demais!',
-    foto: '/images/Estudando.png',
-    profissao: 'Empreendedor'
-  },
-  {
-    nome: 'Marina Lima',
-    texto: 'Nunca imaginei que aprender sobre investimentos pudesse ser tão simples. Obrigada, Carlos!',
-    foto: '/images/CarlosGoodman.png',
-    profissao: 'Estudante Universitária'
-  },
-  {
-    nome: 'Ricardo Alves',
-    texto: 'O acompanhamento e a didática do Carlos são diferenciados. Meu dinheiro está rendendo muito mais!',
-    foto: '/images/CGinvestimentos.png',
-    profissao: 'Servidor Público'
-  },
-  {
-    nome: 'Beatriz Martins',
-    texto: 'Recomendo para todos que querem começar a investir sem enrolação. Aprendi muito em pouco tempo.',
-    foto: '/images/Apresentando.png',
-    profissao: 'Designer'
-  }
-];
+function Depoimentos() {
 
-const Depoimentos = () => {
-  const scrollRef = useRef(null);
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  // Funções para drag horizontal
-  const handleMouseDown = (e) => {
-    isDown = true;
-    scrollRef.current.classList.add('cursor-grabbing');
-    startX = e.pageX - scrollRef.current.offsetLeft;
-    scrollLeft = scrollRef.current.scrollLeft;
-  };
-  const handleMouseLeave = () => {
-    isDown = false;
-    scrollRef.current.classList.remove('cursor-grabbing');
-  };
-  const handleMouseUp = () => {
-    isDown = false;
-    scrollRef.current.classList.remove('cursor-grabbing');
-  };
-  const handleMouseMove = (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5; // velocidade
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  // Navegação por setas
-  const scrollByCard = (dir) => {
-    const cardWidth = 340; // largura aproximada do card + gap
-    scrollRef.current.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
-  };
-
-  const scrollToHeader = () => {
-    const header = document.querySelector('header');
-    if (header) {
-      header.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const depoimentos = [
+    {
+      nome: "Ana Paula Souza",
+      texto:
+        "Nunca tinha investido antes e confesso que tinha muito medo. O evento me mostrou que é possível começar do zero, de forma simples e segura. Hoje já faço meus primeiros investimentos com confiança!",
+      cargo: "Iniciante em Investimentos",
+    },
+    {
+      nome: "Carlos Henrique",
+      texto:
+        "Achei o conteúdo muito prático e direto ao ponto. As lives foram dinâmicas e consegui tirar todas as minhas dúvidas ao vivo. Recomendo para quem quer aprender de verdade!",
+      cargo: "Empreendedor",
+    },
+    {
+      nome: "Fernanda Lima",
+      texto:
+        "O evento superou minhas expectativas! Gostei muito da didática do instrutor e da atenção dada a cada participante. Já estou aplicando o que aprendi e vendo resultados.",
+      cargo: "Professora",
+    },
+    {
+      nome: "João Victor",
+      texto:
+        "Participar desse evento foi um divisor de águas para mim. Sempre achei que investir era complicado, mas agora vejo que é acessível para todos. Parabéns pela iniciativa!",
+      cargo: "Estudante Universitário",
+    },
+    {
+      nome: "Marina Oliveira",
+      texto:
+        "O suporte durante o evento foi excelente. As explicações foram claras e os exemplos práticos ajudaram muito. Indico para todos que querem começar a investir sem enrolação.",
+      cargo: "Analista de RH",
+    },
+  ];
 
   return (
-    <section className="w-full bg-transparent py-12 px-4 flex flex-col items-center">
-      <h2 className="text-3xl mb-8 text-center text-text-general tracking-wide uppercase drop-shadow-lg">Leia sobre a experiência de quem fez</h2>
-      <div className="relative w-full max-w-6xl">
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-thumb-white/10 scrollbar-thumb-button-name/60 scrollbar-track-transparent py-4 px-1 md:px-8 select-none cursor-grab"
-          style={{ scrollBehavior: 'smooth' }}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-        >
+    <section className="py-16 bg-transparent">
+      <h2 className="text-4xl font-title text-text-general text-center mb-12">
+        O QUE DIZ QUEM JÁ PARTICIPOU
+      </h2>
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex gap-8 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-yellow-900 scrollbar-track-black snap-x snap-mandatory">
           {depoimentos.map((dep, idx) => (
-            <div key={idx} className="bg-[#222] rounded-xl shadow-lg p-6 flex flex-col items-center text-center flex-shrink-0 min-w-[300px] max-w-[340px] mx-auto border border-yellow-900/30">
-              <img src={dep.foto} alt={dep.nome} className="w-20 h-20 rounded-full object-cover border-4 border-button-name mb-4 shadow" />
-              <p className="text-lg text-text-general mb-4 italic">"{dep.texto}"</p>
-              <div className="font-bold text-button-name">{dep.nome}</div>
-              <div className="text-yellow-100 text-sm">{dep.profissao}</div>
+            <div
+              key={idx}
+              className="bg-marrom rounded-lg p-8 flex-shrink-0 w-80 md:w-96 flex flex-col items-center shadow-lg snap-center border-none"
+            >
+              <p className="mb-8 text-base">{dep.texto}</p>
+              <div className="flex flex-col items-center mt-auto">
+                <div className="w-20 h-20 rounded-full bg-preto border-4 border-branca mb-4" />
+                <span className="font-title text-2xl font-bold">{dep.nome}</span>
+                <span className="font-semibold">{dep.cargo}</span>
+              </div>
             </div>
           ))}
         </div>
       </div>
-      <button
-        onClick={scrollToHeader}
-        className="mt-10 bg-button-name hover:bg-button-name/90 text-text-general font-bold py-4 px-10 text-2xl rounded transition shadow-lg mx-auto block"
-      >
-        Participar
-      </button>
+      <BotaoParticipe />
     </section>
   );
-};
+}
 
 export default Depoimentos; 

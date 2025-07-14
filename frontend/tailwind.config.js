@@ -6,13 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'yellow-900': '#7c5a13',
-        'yellow-800': '#b68d2a',
-        'yellow-700': '#e6b84a',
-        'input-card': '#8F5C0A',
-        'text-general': '#FFF1CC',
-        'banner-saiba': '#561113',
-        'button-name': '#BE7B0E',
+        branca: '#ffffff',
+        amareloClaro: '#fff1cc',
+        marrom: '#8f5c0a',
+        dourado: '#b37b0e',
+        preto: '#1a1a1a',
+        vinho: '#561113',
       },
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],

@@ -1,121 +1,134 @@
-# Landing Page - Mentoria de Investimentos
-![image](https://github.com/user-attachments/assets/37b4f771-3d27-44bd-adaa-0f02d6734e95)
+# Investidor Master
 
-Protótipo feito no Figma: https://www.figma.com/proto/kc41aH6iPx7sdpWppYCiIU/Landing-page?node-id=1-2&t=wFcq7HS90OkWEG0F-1
+Landing page para captura de leads com sistema de gerenciamento integrado.
 
-## Aviso de Fictício e Imagens Geradas por IA
+## 🚀 Como rodar o projeto
 
-Este projeto contém personagens, empresas e/ou cenários totalmente fictícios, criados apenas para fins de demonstração, estudo ou ilustração. As imagens presentes neste repositório foram geradas por Inteligência Artificial e não representam pessoas, marcas ou locais reais.
+### Pré-requisitos
+- Docker e Docker Compose
+- Node.js (versão 14 ou superior) - para desenvolvimento local
 
-## 🎯 Propósito
+### Opção 1: Docker (Recomendado)
 
-Esta landing page foi desenvolvida para o investidor Carlos Goodman, que oferece uma mentoria gratuita de investimentos. O objetivo é capturar leads de pessoas interessadas em aprender sobre investimentos através de 4 aulas ao vivo, ministradas por um profissional experiente no mercado.
+1. Clone o repositório:
+```bash
+git clone <url-do-repositorio>
+cd Investidor-Master
+```
 
-### Sobre a Mentoria
-- 4 aulas ao vivo com Carlos Goodman
-- Foco em educação financeira e investimentos
-- Conteúdo prático e aplicável
-- Acesso gratuito para inscritos
+2. Execute o projeto:
+```bash
+docker-compose up --build
+```
 
-## 🎨 Inspiração e Créditos
+3. Acesse:
+- **Frontend**: http://localhost:3000
+- **Backend**: http://localhost:5000
 
-A ideia de criar uma landing page focada na captura de leads para um evento online foi inspirada no tutorial do canal [Programação Web](https://www.youtube.com/watch?v=KjVhcnSADGA&t=223s). O conceito de utilizar um formulário simples e eficiente para coletar informações de potenciais participantes serviu como base para o desenvolvimento deste projeto. Adaptei a abordagem para o contexto específico de uma mentoria de investimentos, mantendo o foco na conversão de visitantes em participantes.
+### Opção 2: Desenvolvimento Local
 
-## 🛠️ Tecnologias Utilizadas
+#### Backend
+```bash
+cd backend
+npm install
+npm run dev
+```
 
-### Frontend
-- **React.js**: Framework principal para construção da interface
-- **TailwindCSS**: Framework CSS para estilização rápida e responsiva
-- **Axios**: Cliente HTTP para comunicação com o backend
-- **React Router**: Gerenciamento de rotas (quando necessário)
-
-### Backend
-- **Node.js**: Runtime JavaScript
-- **Express**: Framework web para Node.js
-- **SQLite**: Banco de dados para armazenamento de leads
-- **Nodemon**: Monitoramento de alterações em desenvolvimento
+#### Frontend
+```bash
+cd frontend
+npm install
+npm start
+```
 
 ## 📁 Estrutura do Projeto
 
 ```
-landing-page/
+Investidor-Master/
+├── backend/                 # API Node.js/Express
+│   ├── src/
+│   │   └── utils/
+│   │       └── logger.js    # Sistema de logs
+│   ├── server.js           # Servidor principal
+│   ├── database.sqlite     # Banco de dados SQLite
+│   └── package.json
 ├── frontend/               # Aplicação React
 │   ├── src/
-│   │   ├── components/    # Componentes React
-│   │   ├── App.jsx        # Componente principal
-│   │   └── index.js       # Ponto de entrada
+│   │   ├── components/     # Componentes React
+│   │   ├── services/       # Serviços de API
+│   │   ├── App.jsx
+│   │   └── index.js
 │   ├── public/            # Arquivos estáticos
-│   └── package.json       # Dependências do frontend
-│
-├── backend/               # API Node.js
-│   ├── src/
-│   │   ├── routes/       # Rotas da API
-│   │   ├── models/       # Modelos de dados
-│   │   └── tests/        # Testes unitários
-│   ├── server.js         # Servidor Express
-│   └── package.json      # Dependências do backend
-│
-└── README.md             # Documentação
+│   └── package.json
+└── docker-compose.yml     # Configuração Docker
 ```
 
-## 🚀 Como Executar
+## 🛠️ Tecnologias Utilizadas
 
-### Pré-requisitos
-- Node.js (versão 14 ou superior)
-- npm ou yarn
+### Backend
+- **Node.js** com Express
+- **SQLite** para banco de dados
+- **Winston** para logs
+- **Helmet** para segurança
+- **CORS** para comunicação com frontend
 
-### Instalação
+### Frontend
+- **React 18** com React Scripts
+- **Tailwind CSS** para estilização
+- **Axios** para requisições HTTP
 
-1. Clone o repositório:
-```bash
-git clone [URL_DO_REPOSITÓRIO]
-cd Investidor-Master
-```
+## 📊 Funcionalidades
 
-2. Instale todas as dependências (backend e frontend) com um único comando:
-```bash
-npm install
-```
-
-### Executando o Projeto
-
-**Para desenvolvimento (com hot-reload):**
-```bash
-npm run dev
-```
-
-**Para produção:**
-```bash
-npm start
-```
-
-**Para build do frontend:**
-```bash
-npm run build
-```
+- ✅ Landing page responsiva
+- ✅ Formulário de captura de leads
+- ✅ Sistema de depoimentos
+- ✅ FAQ interativo
+- ✅ Seção do instrutor
+- ✅ API REST para gerenciamento de leads
+- ✅ Sistema de logs
+- ✅ Validação de e-mails duplicados
 
 ## 🔧 Scripts Disponíveis
 
-### Comandos Unificados (raiz do projeto)
-- `npm install`: Instala todas as dependências do backend e frontend
-- `npm run dev`: Inicia backend e frontend em modo desenvolvimento
-- `npm start`: Inicia backend e frontend em modo produção
-- `npm run build`: Compila o frontend para produção
+### Backend
+```bash
+npm run dev          # Desenvolvimento com nodemon
+npm start           # Produção
+npm run lint        # Verificar código
+npm run lint:fix    # Corrigir problemas de lint
+```
 
-### Comandos Individuais
-- `npm run dev:backend`: Inicia apenas o backend em desenvolvimento
-- `npm run dev:frontend`: Inicia apenas o frontend em desenvolvimento
-- `npm run start:backend`: Inicia apenas o backend em produção
-- `npm run start:frontend`: Inicia apenas o frontend em produção
+### Frontend
+```bash
+npm start           # Desenvolvimento
+npm run build       # Build para produção
+```
 
-## 📝 Funcionalidades
+### Desenvolvimento Full-Stack
+```bash
+# No diretório backend
+npm run dev:all     # Backend + Frontend simultaneamente
+```
 
-- Formulário de captura de leads com validação em tempo real
-- Formatação automática de telefone
-- Validação de email
-- Feedback visual para o usuário
-- Armazenamento seguro dos dados
-- Interface responsiva e moderna
+## 🐳 Docker
+
+### Parar o projeto
+```bash
+docker-compose down
+```
+
+### Rebuild após mudanças
+```bash
+docker-compose up --build
+```
+
+## 📝 Observações
+
+- O banco de dados SQLite é persistido no container
+- Logs são salvos em `backend/logs/`
+- O frontend se comunica com o backend via `REACT_APP_API_URL`
+- Sistema de logs configurado com Winston
+- Validação automática de e-mails duplicados
 
 ## 🤝 Contribuição
 

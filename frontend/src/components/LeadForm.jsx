@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 
 const LeadForm = () => {
   const [form, setForm] = useState({ nome: '', email: '', telefone: '' });
@@ -17,7 +17,7 @@ const LeadForm = () => {
     if (mensagem) {
       timer = setTimeout(() => {
         setMensagem('');
-      }, 5000);
+      }, 3000);
     }
     return () => {
       if (timer) clearTimeout(timer);
@@ -83,7 +83,6 @@ const LeadForm = () => {
     setMensagem('');
     setErro('');
 
-    // Validação final antes do envio
     if (!validateEmail(form.email)) {
       setErro('Por favor, insira um e-mail válido');
       return;
@@ -95,7 +94,7 @@ const LeadForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/leads', form);
+      const response = await api.post('/api/leads', form);
       setMensagem('Registro realizado com sucesso!');
       setForm({ nome: '', email: '', telefone: '' });
       setValidation({
@@ -114,54 +113,52 @@ const LeadForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} method="POST" className="flex flex-col gap-1 w-full max-w-md mx-auto mt-2">
+    <form onSubmit={handleSubmit} method="POST" className="flex flex-col gap-2 w-full max-w-md mt-2">
       <div className="relative mb-3">
-      <input
-        type="text"
-        name="nome"
-        placeholder="Nome"
-        value={form.nome}
-        onChange={handleChange}
-          className="p-2 text-lg rounded bg-input-card text-text-general placeholder-text-general focus:outline-none border-2 border-input-card focus:border-button-name shadow w-full"
-        required
-      />
+        <input
+          type="text"
+          name="nome"
+          placeholder="Nome"
+          value={form.nome}
+          onChange={handleChange}
+          className="p-2 text-lg rounded bg-marrom text-amareloClaro placeholder-amareloClaro focus:outline-none border-1 focus:border-dourado shadow w-full"
+          required
+        />
       </div>
 
       <div className="relative mb-3">
-      <input
-        type="email"
-        name="email"
-        placeholder="E-mail"
-        value={form.email}
-        onChange={handleChange}
-          className={`p-2 text-lg rounded bg-input-card text-text-general placeholder-text-general focus:outline-none border-2 ${
-            validation.email.isValid ? 'border-input-card focus:border-button-name' : 'border-red-500'
-          } shadow w-full`}
-        required
-      />
+        <input
+          type="email"
+          name="email"
+          placeholder="E-mail"
+          value={form.email}
+          onChange={handleChange}
+          className={`p-2 text-lg rounded bg-marrom text-amareloClaro placeholder-amareloClaro focus:outline-none border-1 focus:border-dourado ${validation.email.isValid ? 'border-amareloClaro focus:border-dourado' : 'border-red-300'
+            } shadow w-full`}
+          required
+        />
         {!validation.email.isValid && form.email && (
-          <span className="text-red-500 text-sm absolute -bottom-5 left-0">{validation.email.message}</span>
+          <span className="text-red-300 text-sm absolute -bottom-5 left-0">{validation.email.message}</span>
         )}
       </div>
 
       <div className="relative mb-3">
-      <input
-        type="tel"
-        name="telefone"
-        placeholder="Telefone"
-        value={form.telefone}
-        onChange={handleChange}
-          className={`p-2 text-lg rounded bg-input-card text-text-general placeholder-text-general focus:outline-none border-2 ${
-            validation.telefone.isValid ? 'border-input-card focus:border-button-name' : 'border-red-500'
-          } shadow w-full`}
-        required
-      />
+        <input
+          type="tel"
+          name="telefone"
+          placeholder="Telefone"
+          value={form.telefone}
+          onChange={handleChange}
+          className={`p-2 text-lg rounded bg-marrom text-amareloClaro placeholder-amareloClaro focus:outline-none border-1 focus:border-dourado ${validation.telefone.isValid ? 'border-amareloClaro focus:border-dourado' : 'border-red-300'
+            } shadow w-full`}
+          required
+        />
         {!validation.telefone.isValid && form.telefone && (
-          <span className="text-red-500 text-sm absolute -bottom-5 left-0">{validation.telefone.message}</span>
+          <span className="text-red-300 text-sm absolute -bottom-5 left-0">{validation.telefone.message}</span>
         )}
       </div>
 
-      <small className="text-text-general text-s text-left mt-2">
+      <small className="text-s text-left mt-2">
         Ao se inscrever, você concorda com nossa{' '}
         <a
           href="#"
@@ -169,7 +166,7 @@ const LeadForm = () => {
             e.preventDefault();
             setShowPolitica(true);
           }}
-          className="text-button-name hover:text-button-name/80 underline"
+          className="text-dourado hover:text-dourado/80 underline"
         >
           Política de Privacidade
         </a>{' '}
@@ -180,27 +177,27 @@ const LeadForm = () => {
             e.preventDefault();
             setShowTermos(true);
           }}
-          className="text-button-name hover:text-button-name/80 underline"
+          className="text-dourado hover:text-dourado/80 underline"
         >
           Termos de Uso
         </a>
       </small>
 
-      <button 
-        type="submit" 
-        className="bg-button-name hover:bg-button-name/90 text-text-general font-bold py-4 px-10 text-2xl rounded transition shadow-lg mt-2 mx-auto block disabled:opacity-50 disabled:cursor-not-allowed"
+      <button
+        type="submit"
+        className="bg-dourado text-white hover:bg-dourado/90 font-bold py-4 px-10 text-2xl rounded transition shadow-lg mt-2 mx-auto block disabled:opacity-70 disabled:cursor-not-allowed"
         disabled={!validation.email.isValid || !validation.telefone.isValid}
       >
         Participar
       </button>
 
       {mensagem && (
-        <div className="text-green-500 text-center font-semibold mt-2 bg-green-100 bg-opacity-20 rounded p-2 border border-green-400">
+        <div className="text-green-300 text-center font-semibold mt-2 bg-green-100 bg-opacity-20 rounded p-2 border border-green-400">
           {mensagem}
         </div>
       )}
       {erro && (
-        <div className="text-red-500 text-center font-semibold mt-2 bg-red-100 bg-opacity-20 rounded p-2 border border-red-400">
+        <div className="text-red-300 text-center font-semibold mt-2 bg-red-100 bg-opacity-20 rounded p-2 border border-red-400">
           {erro}
         </div>
       )}
@@ -208,12 +205,12 @@ const LeadForm = () => {
       {/* Modal Política de Privacidade */}
       {showPolitica && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[99999] p-4">
-          <div className="bg-yellow-900 rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto relative">
-            <h2 className="text-2xl font-bold text-white mb-4">Política de Privacidade</h2>
-            <div className="text-yellow-100 space-y-4">
+          <div className="bg-marrom rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto relative">
+            <h2 className="text-2xl font-bold text-amareloClaro mb-4">Política de Privacidade</h2>
+            <div className="text-white space-y-4">
               <p>1. Coleta de Dados</p>
               <p>Coletamos informações que você nos fornece diretamente, incluindo nome, e-mail e telefone.</p>
-              
+
               <p>2. Uso das Informações</p>
               <p>Utilizamos suas informações para:</p>
               <ul className="list-disc pl-6">
@@ -227,7 +224,7 @@ const LeadForm = () => {
             </div>
             <button
               onClick={() => setShowPolitica(false)}
-              className="mt-6 bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-6 rounded transition"
+              className="mt-6 bg-dourado hover:bg-dourado/90 text-white font-bold py-2 px-6 rounded transition"
             >
               Fechar
             </button>
@@ -238,12 +235,12 @@ const LeadForm = () => {
       {/* Modal Termos de Uso */}
       {showTermos && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[999] p-4">
-          <div className="bg-yellow-900 rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto relative">
-            <h2 className="text-2xl font-bold text-white mb-4">Termos de Uso</h2>
-            <div className="text-yellow-100 space-y-4">
+          <div className="bg-marrom rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto relative">
+            <h2 className="text-2xl font-bold text-amareloClaro mb-4">Termos de Uso</h2>
+            <div className="text-white space-y-4">
               <p>1. Aceitação dos Termos</p>
               <p>Ao se inscrever, você concorda com todos os termos e condições aqui estabelecidos.</p>
-              
+
               <p>2. Responsabilidades</p>
               <p>Você é responsável por:</p>
               <ul className="list-disc pl-6">
@@ -257,7 +254,7 @@ const LeadForm = () => {
             </div>
             <button
               onClick={() => setShowTermos(false)}
-              className="mt-6 bg-yellow-700 hover:bg-yellow-800 text-white font-bold py-2 px-6 rounded transition"
+              className="mt-6 bg-dourado hover:bg-dourado/90 text-white font-bold py-2 px-6 rounded transition"
             >
               Fechar
             </button>
