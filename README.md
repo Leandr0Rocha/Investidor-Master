@@ -1,4 +1,5 @@
 # Investidor Master
+<img width="1477" height="4616" alt="Captura de tela 2025-07-13 - 21 57 16-fullpage" src="https://github.com/user-attachments/assets/67be12bb-a60d-4c2b-b00d-166ca94dd6bc" />
 
 Landing page para captura de leads com sistema de gerenciamento integrado.
 
