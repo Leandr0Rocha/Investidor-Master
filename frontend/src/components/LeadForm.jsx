@@ -11,6 +11,7 @@ const LeadForm = () => {
     email: { isValid: true, message: '' },
     telefone: { isValid: true, message: '' }
   });
+  const [tipoMensagem, setTipoMensagem] = useState(""); // "sucesso" ou "erro"
 
   useEffect(() => {
     let timer;
@@ -96,6 +97,7 @@ const LeadForm = () => {
     try {
       const response = await api.post('/api/leads', form);
       setMensagem('Registro realizado com sucesso!');
+      setTipoMensagem("sucesso");
       setForm({ nome: '', email: '', telefone: '' });
       setValidation({
         email: { isValid: true, message: '' },
@@ -103,12 +105,13 @@ const LeadForm = () => {
       });
     } catch (err) {
       if (err.response && err.response.status === 409) {
-        setErro('Este e-mail já está cadastrado.');
-      } else if (err.response && err.response.data && err.response.data.error) {
-        setErro(err.response.data.error);
+        setMensagem("E-mail já cadastrado!");
+        setTipoMensagem("erro");
       } else {
-        setErro('Erro ao enviar dados. Tente novamente.');
+        setMensagem("Erro ao enviar. Tente novamente.");
+        setTipoMensagem("erro");
       }
+      setTimeout(() => setMensagem(""), 3000);
     }
   };
 
@@ -158,7 +161,7 @@ const LeadForm = () => {
         )}
       </div>
 
-      <small className="text-s text-left mt-2">
+      <small className="text-xs text-center">
         Ao se inscrever, você concorda com nossa{' '}
         <a
           href="#"
@@ -170,7 +173,7 @@ const LeadForm = () => {
         >
           Política de Privacidade
         </a>{' '}
-        e{' '}
+        e com os{' '}
         <a
           href="#"
           onClick={(e) => {
@@ -192,7 +195,11 @@ const LeadForm = () => {
       </button>
 
       {mensagem && (
-        <div className="text-green-300 text-center font-semibold mt-2 bg-green-100 bg-opacity-20 rounded p-2 border border-green-400">
+        <div className={
+          tipoMensagem === "erro"
+            ? "text-red-600 bg-red-100 border border-red-400 rounded px-4 py-2 mt-2"
+            : "text-green-600 bg-green-100 border border-green-400 rounded px-4 py-2 mt-2"
+        }>
           {mensagem}
         </div>
       )}
