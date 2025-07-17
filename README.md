@@ -1,6 +1,7 @@
 # Investidor Master
+<img width="1919" height="872" alt="image" src="https://github.com/user-attachments/assets/7d67ab92-f86f-4828-a207-18ef166f8d4c" />
 
-Landing page para captura de leads com sistema de gerenciamento integrado.
+Landing page para captura de leads com sistema de gerenciamento integrado. Protótipo no **Figma**: https://www.figma.com/proto/kc41aH6iPx7sdpWppYCiIU/carlos-goodman?node-id=6-254
 
 ## 🚀 Como rodar o projeto
 
