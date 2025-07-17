@@ -1,5 +1,5 @@
 # Investidor Master
-<img width="1919" height="872" alt="image" src="https://github.com/user-attachments/assets/7d67ab92-f86f-4828-a207-18ef166f8d4c" />
+<img width="1919" height="876" alt="image" src="https://github.com/user-attachments/assets/e2197a3f-a973-42b6-918e-38170d568772" />
 
 Landing page para captura de leads com sistema de gerenciamento integrado. Protótipo no **Figma**: https://www.figma.com/proto/kc41aH6iPx7sdpWppYCiIU/carlos-goodman?node-id=6-254
 
